@@ -1,23 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Hello World!</title>
     <link rel="stylesheet" href="./styles/style.css">
-  </head>
-  <body>
-      <div class="initDiv">
-        <div id="manualInit">
-          <button onclick="manualInit()">Ручной ввод</button>
-          <div id="manualForm">
+
+</head>
+<body>
+
+<div class="initDiv">
+    <div id="manualInit">
+        <button onclick="manualInit()">Кнопка</button>
+        <div id="manualForm">
             <form name="manual">
 
             </form>
-          </div>
         </div>
-        <div id="webInit">
+        <div id="app">
+            {{ message }}
+<!--            <table>-->
+<!--                <thead>-->
+<!--                    <tr>-->
+<!--                      <td>Имя </td>-->
+<!--                      <td></td>-->
+<!--                      <td></td>-->
+<!--                      <td></td>-->
+<!--                      <td></td>-->
+<!--                    </tr>-->
+<!--                </thead>-->
+<!--                <tbody>-->
 
+<!--                </tbody>-->
+<!--            </table>-->
         </div>
-      </div>
-  <script src="./scripts/renderer.js"></script>
-  </body>
+    </div>
+
+    <div id="webInit">
+
+    </div>
+</div>
+<script src="./scripts/vue.js"></script>
+<script src="./scripts/renderer.js"></script>
+</body>
 </html>
