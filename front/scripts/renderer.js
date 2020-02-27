@@ -4,5 +4,7 @@ const {ipcRenderer} = el;
 
 new Vue({
     el: '#app',
-    data: {}
+    data: {
+        teams: []
+    }
 });
