@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add item</title>
+</head>
+<body>
+    <form>
+            <label>Name: </label>
+            <input type="text" id="item" autofocus>
+        <button type="submit">+</button>
+    </form>
+    <script>
+        const el = require('electron');
+        const {ipcRenderer} = el;
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit',submit);
+
+        function submit(e){
+            e.preventDefault();
+            const item = document.getElementById('item');
+            ipcRenderer.send('item:add',item.value);
+            item.value = '';
+        }
+    </script>
+</body>
+</html>
