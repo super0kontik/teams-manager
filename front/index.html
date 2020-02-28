@@ -6,36 +6,88 @@
 
 </head>
 <body>
-
-<div class="initDiv">
-    <div id="manualInit">
-        <button onclick="manualInit()">Кнопка</button>
-        <div id="manualForm">
-            <form name="manual">
-
-            </form>
+<div class="main-wrapper" >
+    <header>
+        <h2>Табло</h2>
+    </header>
+    <div class="init-btns" id="init-btns">
+        <div class="init-manual" v-on:click="initManual()">
+            <p>Заполнить команды вручную</p>
         </div>
-        <div id="app">
-            {{ message }}
-<!--            <table>-->
-<!--                <thead>-->
-<!--                    <tr>-->
-<!--                      <td>Имя </td>-->
-<!--                      <td></td>-->
-<!--                      <td></td>-->
-<!--                      <td></td>-->
-<!--                      <td></td>-->
-<!--                    </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-
-<!--                </tbody>-->
-<!--            </table>-->
+        <div class="init-web">
+            <p>Запросить информацию из сервера</p>
         </div>
     </div>
-
-    <div id="webInit">
-
+    <div class="t-wrapper" id="table-score">
+        <div class="t-head">
+            <div class="t-head-title">
+                <p>Название</p>
+            </div>
+            <div class="t-head-tour">
+                <p>1 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>2 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>3 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>4 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>5 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>6 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>7 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>8 тур</p>
+            </div>
+            <div class="t-head-tour">
+                <p>Очки</p>
+            </div>
+        </div>
+        <div class="t-body">
+            <div class="t-row" v-for="team in teams">
+                <div class="t-row-content">
+                    <div class="t-title">
+                        <p>{{team.name}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['1']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['2']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['3']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['4']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['5']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['6']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['7']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.tours['8']}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.sum}}</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
     </div>
 </div>
 <script src="./scripts/vue.js"></script>

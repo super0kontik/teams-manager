@@ -13,8 +13,10 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true
-        }
+        },
+        simpleFullscreen: true
     });
+    mainWindow.maximize();
 
     mainWindow.on('closed', function () {
         mainWindow = null
@@ -40,22 +42,27 @@ app.on('ready', () => {
 
 const createAddWindow = () => {
     addWindow = new BrowserWindow({
-        width: 400,
-        height: 300,
+        width: 1280,
+        height: 768,
         title: 'Add item',
         webPreferences: {
             nodeIntegration: true
         }
     });
-    addWindow.loadFile('./add.html');
+    addWindow.loadFile('./front/add.html');
     addWindow.on('close', () => {
         addWindow = null;
     })
 
 };
 
-ipcMain.on('item:add', (e, item) => {
-    mainWindow.webContents.send('item:add', item);
+ipcMain.on('onModalClose', (e, data) => {
+    mainWindow.webContents.send('onDataFromModal', data);
+});
+
+ipcMain.on('addTeamsModal', () => {
+    console.log('main here');
+    createAddWindow();
 });
 
 const mainMenuT = [

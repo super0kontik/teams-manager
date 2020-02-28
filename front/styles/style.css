@@ -1,0 +1,162 @@
+
+@font-face {
+    font-family: 'M-Light';
+    src: url("./fonts/Montserrat-Light.ttf");
+}
+@font-face {
+    font-family: 'M-Regular';
+    src: url("./fonts/Montserrat-Regular.ttf");
+}
+@font-face {
+    font-family: 'M-SemiBold';
+    src: url("./fonts/Montserrat-SemiBold.ttf");
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: 'M-Regular', sans-serif;
+}
+
+.main-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(90deg, #258ad6, #22508f);
+}
+
+.main-wrapper header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.39), transparent);
+    font-size: 35px;
+    color: white;
+}
+
+.main-wrapper h2 {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.init-btns {
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.init-manual, .init-web {
+    transition: 0.2s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.53);
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.34);
+    transform: translateY(-5px);
+}
+
+.init-manual:hover {
+    transition: 0.2s;
+    box-shadow: 0 0 0;
+    transform: translateY(0px);
+}
+.init-web:hover {
+    transition: 0.2s;
+    box-shadow: 0 0 0;
+    transform: translateY(0px);
+}
+
+
+.t-wrapper {
+    padding: 0 40px;
+    margin-top: 110px;
+    display: flex;
+    flex-direction: column;
+}
+
+.t-wrapper p {
+    color: white;
+}
+
+.t-wrapper > hr {
+    width: 100%;
+    margin: 0;
+}
+
+.t-head {
+    display: flex;
+    font-size: 28px;
+}
+
+.t-head-title, .t-head-tour {
+    text-align: center;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+
+}
+
+.t-head-title {
+    width: 600px;
+}
+
+.t-head-tour {
+    width: 120px;
+    padding: 0 5px 10px 5px;
+}
+
+.t-title {
+    width: 600px;
+    text-align: center;
+}
+
+.t-title p {
+    word-break: break-all;
+}
+
+.t-title, .t-tour {
+    border-left: 1px solid white;
+}
+
+.t-tour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    padding: 0 5px 5px 5px;
+}
+
+.t-body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.t-row {
+    display: flex;
+    flex-direction: column;
+    font-size: 26px;
+}
+
+.t-row hr {
+    width: 100%;
+    box-shadow: 0 0 10px white;
+}
+
+.t-row-content {
+    display: flex;
+}

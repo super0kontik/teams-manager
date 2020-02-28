@@ -2,26 +2,26 @@
 <html lang="en">
 <head>
     <title>Add item</title>
+    <link rel="stylesheet" href="./styles/modal-style.css">
 </head>
 <body>
-    <form>
-            <label>Name: </label>
-            <input type="text" id="item" autofocus>
-        <button type="submit">+</button>
-    </form>
-    <script>
-        const el = require('electron');
-        const {ipcRenderer} = el;
+<div class="modal-wrapper">
+    <h2>Форма создания команд</h2>
+    <div class="form-wrapper">
+        <form>
+            <div class="form-content" id="form-content">
+                <label>
+                    Название команды
+                    <input type="text" autofocus>
+                </label>
+            </div>
+            <div class="add-btn" id="add-btn"><p>+</p></div>
+            <button type="submit">Принять</button>
+        </form>
+    </div>
 
-        const form = document.querySelector('form');
-        form.addEventListener('submit',submit);
+</div>
 
-        function submit(e){
-            e.preventDefault();
-            const item = document.getElementById('item');
-            ipcRenderer.send('item:add',item.value);
-            item.value = '';
-        }
-    </script>
+<script src="./scripts/modal-renderer.js"></script>
 </body>
 </html>
