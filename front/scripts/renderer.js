@@ -6,36 +6,59 @@ const {getFromFile, getFromWeb, saveToFile} = require('./scripts/utils');
 const initBtns = new Vue({
     el: '#init-btns',
     data: {
-        initManual: () => {
-            console.log('here');
-            ipcRenderer.send('addTeamsModal');
-        }
+        initManual: () => ipcRenderer.send('addTeamsModal')
     }
 });
 
 const table = new Vue({
     el: '#table-score',
     data: {
-        teams: []
+        teams: [],
+        tourNumbers: {
+            1: {value: 1, isEdit: false},
+            2: {value: 2, isEdit: false},
+            3: {value: 3, isEdit: false},
+            4: {value: 4, isEdit: false},
+            5: {value: 5, isEdit: false},
+            6: {value: 6, isEdit: false},
+            7: {value: 7, isEdit: false},
+            8: {value: 8, isEdit: false},
+        },
+        editTour: (index) => {
+            table.tourNumbers[index].isEdit = true;
+            table.teams = table.teams.map(team => {
+                team.tours[index] = {value: team.tours[index].value, isEdit: true};
+                return team;
+            });
+        },
+        submitTour: (index) => {
+            table.tourNumbers[index].isEdit = false;
+            table.teams = table.teams.map(team => {
+                team.tours[index] = {value: team.tours[index].value, isEdit: false};
+                return team;
+            });
+        }
     }
 });
+
 
 ipcRenderer.on('onDataFromModal', (e, data) => {
     data.forEach(team => {
         table.teams.push({
             name: team,
             tours: {
-                1: 0,
-                2: 0,
-                3: 0,
-                4: 0,
-                5: 0,
-                6: 0,
-                7: 0,
-                8: 0,
+                1: {value: 0, isEdit: false},
+                2: {value: 0, isEdit: false},
+                3: {value: 0, isEdit: false},
+                4: {value: 0, isEdit: false},
+                5: {value: 0, isEdit: false},
+                6: {value: 0, isEdit: false},
+                7: {value: 0, isEdit: false},
+                8: {value: 0, isEdit: false},
             },
             sum: 0
         });
     });
-    console.log(data);
 });
+
+

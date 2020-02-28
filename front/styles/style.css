@@ -105,9 +105,9 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .t-head-title, .t-head-tour {
     text-align: center;
+    vertical-align: center;
     border-left: 1px solid white;
     border-bottom: 1px solid white;
-
 }
 
 .t-head-title {
@@ -115,8 +115,39 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .t-head-tour {
+    cursor: pointer;
+    transition: 0.2s;
     width: 120px;
     padding: 0 5px 10px 5px;
+    font-family: 'M-Regular', sans-serif;
+    color: white;
+}
+
+.t-head-button {
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    background: #efff0e;
+    color: black;
+    font-size: 18px;
+    font-family: 'M-Regular', sans-serif;
+    border-radius: 50%;
+    border: 0;
+}
+
+.t-head-button:hover {
+    transition: 0.3s;
+    box-shadow: 0 0 15px #ffffff;
+    background: white;
+}
+
+.t-head-tour:hover, .t-head-tour p:hover {
+    animation: tourAnim 0.6s ease-in-out infinite;
 }
 
 .t-title {
@@ -140,6 +171,27 @@ p, h1, h2, h3, h4, h5, h6 {
     padding: 0 5px 5px 5px;
 }
 
+.t-tour input {
+    text-align: center;
+    padding: 5px;
+    outline: none;
+    transition: 0.3s;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 50%;
+    font-family: 'M-Regular', sans-serif;
+    color: #efff0e;
+    font-size: 18px;
+}
+
+.t-tour input:focus {
+    transition: 0.3s;
+    box-shadow: 0 0 15px #efff0e;
+    border: 2px solid #efff0e;
+}
+
 .t-body {
     display: flex;
     flex-direction: column;
@@ -159,4 +211,21 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .t-row-content {
     display: flex;
+}
+
+@keyframes tourAnim {
+    0% {
+        background: transparent;
+        color: white;
+    }
+    50% {
+        background: #efff0e;
+        color: black;
+        box-shadow: 0 0 10px #efff0e;
+
+    }
+    100% {
+        background: transparent;
+        color: white;
+    }
 }

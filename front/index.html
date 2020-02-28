@@ -23,32 +23,16 @@
             <div class="t-head-title">
                 <p>Название</p>
             </div>
-            <div class="t-head-tour">
-                <p>1 тур</p>
+            <div class="t-head-tour" v-for="num in tourNumbers">
+                <div v-if="!num.isEdit">
+                    <span v-on:click="editTour(num.value)">{{num.value}} тур</span>
+                </div>
+                <div class="t-head-button" v-else>
+                    <span v-on:click="submitTour(num.value)">OK</span>
+                </div>
             </div>
             <div class="t-head-tour">
-                <p>2 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>3 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>4 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>5 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>6 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>7 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>8 тур</p>
-            </div>
-            <div class="t-head-tour">
-                <p>Очки</p>
+                <p>Cчет</p>
             </div>
         </div>
         <div class="t-body">
@@ -57,29 +41,13 @@
                     <div class="t-title">
                         <p>{{team.name}}</p>
                     </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['1']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['2']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['3']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['4']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['5']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['6']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['7']}}</p>
-                    </div>
-                    <div class="t-tour">
-                        <p>{{team.tours['8']}}</p>
+                    <div class="t-tour" v-for="tour in team.tours">
+                        <p v-if="!tour.isEdit">{{tour.value}}</p>
+                        <div v-else>
+                            <label>
+                                <input v-model="tour.value">
+                            </label>
+                        </div>
                     </div>
                     <div class="t-tour">
                         <p>{{team.sum}}</p>
