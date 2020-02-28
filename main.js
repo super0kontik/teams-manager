@@ -1,7 +1,7 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const path = require('path');
 const fs = require('fs');
-require('electron-reload')(__dirname);
+// require('electron-reload')(__dirname);
 
 let mainWindow;
 let addWindow;

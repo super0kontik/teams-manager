@@ -34,6 +34,7 @@ module.exports = {
             return proccessResponse(await response.json());
         } else {
             alert("Ошибка HTTP: " + response.status);
+            return false;
         }
     },
 
