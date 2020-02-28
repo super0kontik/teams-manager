@@ -35,5 +35,46 @@ module.exports = {
         } else {
             alert("Ошибка HTTP: " + response.status);
         }
+    },
+
+    sort: arr => {
+        let table = [...arr];
+        const bubbleSort = (array)=>{
+            let sorted = false;
+
+            let counter =0;
+
+            while(!sorted){
+                sorted = true;
+                for(let i =0; i < array.length -1 -counter; i++){
+                    if(array[i].sum > array[i+1].sum){
+                        helper(i,i+1,array);
+                        sorted = false;
+                    }else if(array[i].sum === array[i+1].sum){
+                        for(let j = 8; j > 0; j--){
+                            if(array[i].tours[j] > array[i+1].tours[j]){
+                                helper(i,i+1,array);
+                                sorted = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                counter++;
+            }
+            return array;
+        }
+
+        function helper(i,j, array){
+            return [array[i],array[j]] = [array[j],array[i]]
+        }
+        return bubbleSort(table.map(item => {
+            let sum = 0;
+            for(let i = 1; i < 9; i++){
+                sum += item.tours[i]
+            }
+            item.sum = sum;
+            return item;
+        })).reverse()
     }
 };
