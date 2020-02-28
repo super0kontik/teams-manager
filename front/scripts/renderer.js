@@ -1,6 +1,7 @@
 const el = require('electron');
 const {ipcRenderer} = el;
 // const Vue = require('./vue')
+const {getFromFile, getFromWeb, saveToFile} = require('./scripts/utils');
 
 const initBtns = new Vue({
     el: '#init-btns',

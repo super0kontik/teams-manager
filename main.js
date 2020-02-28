@@ -1,10 +1,22 @@
 const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const path = require('path');
-
-require('electron-reload')(__dirname);
+const fs = require('fs');
+//require('electron-reload')(__dirname);
 
 let mainWindow;
 let addWindow;
+let initObj = [];
+
+const parseTeamsFromFile = () => {
+    const files = fs.readdirSync('./');
+    if(files.indexOf('teams.json') !== -1){
+        initObj = JSON.parse(fs.readFileSync('./teams.json', {encoding:'utf-8'}).toString())
+    }
+};
+
+const saveTeams = (teamsObj) => {
+    fs.writeFileSync('./teams.json', JSON.stringify(teamsObj, null, 4),{flag:'w'})
+};
 
 function createWindow() {
     mainWindow = new BrowserWindow({
@@ -13,8 +25,7 @@ function createWindow() {
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             nodeIntegration: true
-        },
-        simpleFullscreen: true
+        }
     });
     mainWindow.maximize();
 
@@ -32,8 +43,10 @@ app.on('activate', function () {
     if (mainWindow === null) createWindow()
 });
 
+
 app.on('ready', () => {
     createWindow();
+    parseTeamsFromFile();
     mainWindow.loadFile('./front/index.html');
     const mainM = Menu.buildFromTemplate(mainMenuT);
     Menu.setApplicationMenu(mainM);
@@ -55,6 +68,15 @@ const createAddWindow = () => {
     })
 
 };
+
+ipcMain.on('retrieve', e => {
+    e.reply('data', initObj);
+});
+
+ipcMain.on('store', (e, obj) => {
+    saveTeams(obj);
+    e.reply('saved', 'ok');
+});
 
 ipcMain.on('onModalClose', (e, data) => {
     mainWindow.webContents.send('onDataFromModal', data);
