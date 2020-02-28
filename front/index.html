@@ -6,19 +6,22 @@
 
 </head>
 <body>
-<div class="main-wrapper" >
+<div class="main-wrapper" id="main">
     <header>
         <h2>Табло</h2>
     </header>
-    <div class="init-btns" id="init-btns">
+    <div class="message" v-if="message">
+        <h2>{{message}}</h2>
+    </div>
+    <div class="init-btns">
         <div class="init-manual" v-on:click="initManual()">
             <p>Заполнить команды вручную</p>
         </div>
-        <div class="init-web">
+        <div class="init-web" v-on:click="teamsRequest()">
             <p>Запросить информацию из сервера</p>
         </div>
     </div>
-    <div class="t-wrapper" id="table-score">
+    <div class="t-wrapper" >
         <div class="t-head">
             <div class="t-head-title">
                 <p>Название</p>
