@@ -22,7 +22,7 @@ module.exports = {
                 return {
                     name: i.title,
                     tours: {
-                        1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0
+                        1:{value:0}, 2:{value:0}, 3:{value:0}, 4:{value:0}, 5:{value:0}, 6:{value:0}, 7:{value:0}, 8:{value:0}
                     },
                     sum:0
                 }
@@ -52,7 +52,7 @@ module.exports = {
                         sorted = false;
                     }else if(array[i].sum === array[i+1].sum){
                         for(let j = 8; j > 0; j--){
-                            if(array[i].tours[j] > array[i+1].tours[j]){
+                            if(array[i].tours[j].value > array[i+1].tours[j].value){
                                 helper(i,i+1,array);
                                 sorted = false;
                                 break;
@@ -71,7 +71,7 @@ module.exports = {
         return bubbleSort(table.map(item => {
             let sum = 0;
             for(let i = 1; i < 9; i++){
-                sum += item.tours[i]
+                sum += item.tours[i].value
             }
             item.sum = sum;
             return item;
