@@ -5,6 +5,7 @@ const fs = require('fs');
 
 let mainWindow;
 let addWindow;
+let overviewWindow;
 let initObj = [];
 
 const parseTeamsFromFile = () => {
@@ -15,6 +16,7 @@ const parseTeamsFromFile = () => {
 };
 
 const saveTeams = (teamsObj) => {
+    initObj = teamsObj;
     fs.writeFileSync('./teams.json', JSON.stringify(teamsObj, null, 4),{flag:'w'})
 };
 
@@ -57,7 +59,7 @@ const createAddWindow = () => {
     addWindow = new BrowserWindow({
         width: 1280,
         height: 768,
-        title: 'Add item',
+        title: 'Добавление команд',
         webPreferences: {
             nodeIntegration: true
         }
@@ -65,6 +67,25 @@ const createAddWindow = () => {
     addWindow.loadFile('./front/add.html');
     addWindow.on('close', () => {
         addWindow = null;
+    });
+    mainWindow.maximize();
+};
+
+const createOverviewWindow = (data) => {
+    overviewWindow = new BrowserWindow({
+        width: 1280,
+        height: 768,
+        title: 'Общий подсчет',
+        webPreferences: {
+            nodeIntegration: true
+        }
+
+    });
+    overviewWindow.maximize();
+    overviewWindow.loadFile('./front/overview.html');
+
+    overviewWindow.on('close', () => {
+        overviewWindow = null;
     })
 
 };
@@ -82,9 +103,9 @@ ipcMain.on('onModalClose', (e, data) => {
     mainWindow.webContents.send('onDataFromModal', data);
 });
 
-ipcMain.on('addTeamsModal', () => {
-    createAddWindow();
-});
+ipcMain.on('overviewModal', (data) => createOverviewWindow(data));
+
+ipcMain.on('addTeamsModal', () => createAddWindow());
 
 const mainMenuT = [
     {

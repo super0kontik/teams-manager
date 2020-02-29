@@ -72,7 +72,7 @@ module.exports = {
         return bubbleSort(table.map(item => {
             let sum = 0;
             for(let i = 1; i < 9; i++){
-                sum += item.tours[i].value
+                sum += +item.tours[i].value;
             }
             item.sum = sum;
             return item;

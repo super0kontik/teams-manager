@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Общий подсчет</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+<div class="main-wrapper" id="overview">
+    <header>
+        <h2>Общая статистика</h2>
+    </header>
+<!--    <div class="message">-->
+<!--        <h2></h2>-->
+<!--    </div>-->
+    <div class="t-wrapper" >
+        <div class="t-head">
+            <div class="t-head-number">
+                <p>№</p>
+            </div>
+            <div class="t-head-title">
+                <p>Название</p>
+            </div>
+            <div class="t-head-tour" v-for="num in tourNumbers">
+                    <span >{{num.value}} тур</span>
+            </div>
+            <div class="t-head-tour">
+                <p>Cчет</p>
+            </div>
+        </div>
+        <div class="t-body">
+            <div class="t-row" v-for="(team, index) in teams">
+                <div class="t-row-content" v-bind:style="{visibility: index > teams.length - counter ? 'visible' : 'hidden'}">
+                    <div class="t-number" v-bind:style="{background: index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? '#8b7025' : 'transparent'}">
+                        <p>{{index + 1}}</p>
+                    </div>
+                    <div class="t-title">
+                        <p>{{team.name}}</p>
+                    </div>
+                    <div class="t-tour" v-for="tour in team.tours">
+                        <p>{{tour.value}}</p>
+                    </div>
+                    <div class="t-tour">
+                        <p>{{team.sum}}</p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="overview-btn" v-on:click="increment()">
+        <p>+</p>
+    </div>
+</div>
+<script src="./scripts/vue.js"></script>
+<script src="./scripts/overview.js"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello World!</title>
+    <title>КИНОИГРА</title>
     <link rel="stylesheet" href="./styles/style.css">
 
 </head>
@@ -13,7 +13,7 @@
     <div class="message" v-if="message">
         <h2>{{message}}</h2>
     </div>
-    <div class="init-btns">
+    <div class="init-btns" v-if="!teams.length">
         <div class="init-manual" v-on:click="initManual()">
             <p>Заполнить команды вручную</p>
         </div>
@@ -23,6 +23,9 @@
     </div>
     <div class="t-wrapper" >
         <div class="t-head">
+            <div class="t-head-number">
+                <p>№</p>
+            </div>
             <div class="t-head-title">
                 <p>Название</p>
             </div>
@@ -39,8 +42,11 @@
             </div>
         </div>
         <div class="t-body">
-            <div class="t-row" v-for="team in teams">
+            <div class="t-row" v-for="(team, index) in teams">
                 <div class="t-row-content">
+                    <div class="t-number" v-bind:style="{background: index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? '#8b7025' : 'transparent'}">
+                        <p >{{index + 1}}</p>
+                    </div>
                     <div class="t-title">
                         <p>{{team.name}}</p>
                     </div>
@@ -59,6 +65,9 @@
                 <hr>
             </div>
         </div>
+    </div>
+    <div class="overview-btn" v-on:click="openOverview()">
+        <p>Демонстрационный режим</p>
     </div>
 </div>
 <script src="./scripts/vue.js"></script>
