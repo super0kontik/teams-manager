@@ -276,6 +276,14 @@ p, h1, h2, h3, h4, h5, h6 {
 .t-row-content {
     display: flex;
 }
+.del-btn{
+    width: 200px;
+    border-radius: 40px;
+    border: 1px solid #bebebd;
+    margin-left: 70%;
+    padding: 5px;
+    /* margin-right: auto; */
+}
 
 @keyframes tourAnim {
     0% {
