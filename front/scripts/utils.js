@@ -41,7 +41,6 @@ module.exports = {
     sort: arr => {
         let table = [...arr];
         const bubbleSort = (array)=>{
-            // array = [...origArray];
             let sorted = false;
             let counter = 0;
 
@@ -53,20 +52,6 @@ module.exports = {
                         [array[i],array[i+1]] = [array[i+1],array[i]];
                         sorted = false;
                     }
-                    // else 
-                    // if(array[i].sum === array[i+1].sum){
-                    //     for(let j = 8; j > 0; j--){
-                    //         // console.log(array[i].tours[j].value, array[i+1].tours[j].value, array[i].tours[j].value < array[i+1].tours[j].value);
-                    //         if(array[i].tours[j].value > array[i+1].tours[j].value){
-                    //             // console.log(array);
-                    //             // console.log(array[i].tours[j].value, array[i+1].tours[j].value, array[i].tours[j].value < array[i+1].tours[j].value);
-                    //             [array[i],array[i+1]] = [array[i+1],array[i]];
-                    //             console.log('replace');
-                    //             sorted = false;
-                    //             break;
-                    //         }
-                    //     }
-                    // }
                 }
                 counter++;
             }
@@ -83,32 +68,7 @@ module.exports = {
                 item.weighted = weighted;
                 return item;
         })
-        bubbleSort(weighted)
-        // console.log(weighted, table);
-        return weighted.reverse()
-        
-        // return bubbleSort(table.map(item => {
-        //     let sum = 0;
-        //     for(let i = 1; i < 9; i++){
-        //         sum += +item.tours[i].value * i;
-        //     }
-        //     item.sum = sum;
-        //     return item;
-        // })).reverse().map(i=> {
-        //     console.log(i.sum);
-        //     i.sum = table.find(j=> i.name === j.name).sum;
-        //     console.log(table.find(j=> i.name === j.name).sum);
-            
-        //     return i;
-        // })
-
-        // .map(item => {
-        //     let sum = Number(item.sum);
-        //     for(let i = 1; i < 9; i++){
-        //         sum = sum - (Number(item.tours[i].value) * i) + Number(item.tours[i].value);
-        //     }
-        //     item.sum = sum;
-        //     return item;
-        // }).
+        bubbleSort(weighted);
+        return weighted.reverse();
     }
 };
