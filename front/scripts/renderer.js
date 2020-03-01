@@ -62,7 +62,7 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                 await saveToFile(table.teams);
             },
             deleteTable: () => {
-                if(confirm('Вы действительно хотите очистить список?\n Это необратимое действие!')){
+                if(confirm('Вы действительно хотите очистить список?')){
                     table.teams = [];
                     table.message = 'Файл с данными команд пуст либо его не существует! Введите информацию о командах вручную, либо загрузите с сервера!';
                 }

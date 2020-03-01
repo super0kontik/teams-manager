@@ -50,7 +50,7 @@ app.on('ready', () => {
     createWindow();
     parseTeamsFromFile();
     mainWindow.loadFile('./front/index.html');
-    const mainM = Menu.buildFromTemplate(mainMenuT);
+    const mainM = Menu.buildFromTemplate([]);
     Menu.setApplicationMenu(mainM);
     mainWindow.on('closed', () => app.quit());
 });

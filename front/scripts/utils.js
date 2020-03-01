@@ -61,13 +61,13 @@ module.exports = {
                 let sum = 0;
                 let weighted = 0
                 for(let i = 1; i < 9; i++){
-                    weighted += +item.tours[i].value * (i*i*i*i*i);
+                    weighted += +item.tours[i].value * Math.pow(i, 8);
                     sum += +item.tours[i].value
                 }
                 item.sum = sum;
                 item.weighted = weighted;
                 return item;
-        })
+        });
         bubbleSort(weighted);
         return weighted.reverse();
     }
