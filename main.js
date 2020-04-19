@@ -26,7 +26,7 @@ function createWindow() {
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true
+            nodeIntegration: true,
         }
     });
     mainWindow.maximize();
@@ -50,7 +50,7 @@ app.on('ready', () => {
     createWindow();
     parseTeamsFromFile();
     mainWindow.loadFile('./front/index.html');
-    const mainM = Menu.buildFromTemplate([]);
+    const mainM = Menu.buildFromTemplate(mainMenuT);
     Menu.setApplicationMenu(mainM);
     mainWindow.on('closed', () => app.quit());
 });

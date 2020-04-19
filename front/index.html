@@ -69,8 +69,26 @@
     <div class="overview-btn" v-on:click="openOverview()">
         <p>Демонстрационный режим</p>
     </div>
-    <div class="overview-btn del-btn" v-on:click="deleteTable()">
-        <p>Удалить таблицу</p>
+    <div class="additional-btns">     
+        <div class="overview-btn" v-on:click="deleteTable()">
+            <p>Удалить таблицу</p>
+        </div>
+        <div class="overview-btn" v-on:click="exportTable()">
+            <p>Загрузить</p>
+        </div>
+    </div>
+    <div class="export" v-show="exporting">
+        <div class="backdrop" @click="cancelExport()"></div>
+        <div class="login-form">
+            <div class="inputs">
+                <input type="text" placeholder="Site" v-model="creds.apiUrl">
+                <input type="text" placeholder="Login" v-model="creds.login">
+                <input type="password" placeholder="Password" v-model="creds.password">
+            </div>
+            <button 
+            :style="{disabled: (creds.apiUrl.length && creds.login.length && creds.password.length)}"
+             @click="loginAndSend()">Send</button>       
+        </div>
     </div>
 </div>
 <script src="./scripts/vue.js"></script>

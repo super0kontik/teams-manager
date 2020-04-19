@@ -66,6 +66,33 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                     table.teams = [];
                     table.message = 'Файл с данными команд пуст либо его не существует! Введите информацию о командах вручную, либо загрузите с сервера!';
                 }
+            },
+            exporting: false,
+            exportTable: async () => {
+                table.exporting = true
+            },
+            creds: {
+                apiUrl: 'http://kinoigra.net.ua/api',
+                login:'',
+                password: ''
+            },
+            cancelExport: () => {
+                table.creds.login = '';
+                table.creds.password = '';
+                table.exporting = false;
+            },
+            loginAndSend: async () => {
+                const {apiUrl, login, password} = table.creds;
+                const res = await fetch(apiUrl + '/login',{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({login: login.trim(), password: password.trim()})
+                })
+                const token = (await res.json()).token
+                // TODO: add send and err handling
+                // TODO: set send btn to disable if fields are empty
             }
         }
     });
