@@ -39,7 +39,8 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
             teamsRequest: async () => {
                 const response = await getFromWeb();
                 if (response) {
-                    table.teams = response;
+                    table.teams = response.teams;
+                    table.creds.gameId = response.gameId;
                 } else {
                     table.message = 'При загрузке с сервера произошла ошибка, проверьте подключение к интернету! Заполните информацию о командах вручную!';
                 }
@@ -72,7 +73,8 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                 table.exporting = true
             },
             creds: {
-                apiUrl: 'http://kinoigra.net.ua/api',
+                apiUrl: 'http://localhost:3000/api',
+                gameId: '',
                 login:'',
                 password: ''
             },
@@ -82,7 +84,7 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                 table.exporting = false;
             },
             loginAndSend: async () => {
-                const {apiUrl, login, password} = table.creds;
+                const {apiUrl, gameId, login, password} = table.creds;
                 const res = await fetch(apiUrl + '/login',{
                     method: 'POST',
                     headers: {
@@ -90,9 +92,34 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                     },
                     body: JSON.stringify({login: login.trim(), password: password.trim()})
                 })
-                const token = (await res.json()).token
-                // TODO: add send and err handling
-                // TODO: set send btn to disable if fields are empty
+                const data = await res.json();
+                const teams = table.teams.map(t => {
+                    return {
+                        ...t,
+                        tours: {
+                            1: t.tours['1'].value,
+                            2: t.tours['2'].value,
+                            3: t.tours['3'].value,
+                            4: t.tours['4'].value,
+                            5: t.tours['5'].value,
+                            6: t.tours['6'].value,
+                            7: t.tours['7'].value,
+                            8: t.tours['8'].value,
+                        }
+                    };
+                });
+                if (data.token) {
+                    const reg = await fetch(apiUrl + `/tables/${gameId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${data.token}`
+                        },
+                        body: JSON.stringify({table: teams}),
+                    });
+                } else if (!res.ok) {
+                    alert(data.message)
+                }
             }
         }
     });

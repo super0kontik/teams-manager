@@ -81,13 +81,24 @@
         <div class="backdrop" @click="cancelExport()"></div>
         <div class="login-form">
             <div class="inputs">
-                <input type="text" placeholder="Site" v-model="creds.apiUrl">
-                <input type="text" placeholder="Login" v-model="creds.login">
-                <input type="password" placeholder="Password" v-model="creds.password">
+                <label>
+                    Сайт
+                    <input type="text" placeholder="Сайт" v-model="creds.apiUrl">
+                </label>
+                <label>
+                    Идентификатор игры
+                    <input type="text" placeholder="ID игры" v-model="creds.gameId">
+                </label>
+                <label>
+                    Логин
+                    <input type="text" placeholder="Логин" v-model="creds.login">
+                </label>
+                <label>
+                    Пароль
+                    <input type="password" placeholder="Пароль" v-model="creds.password">
+                </label>
             </div>
-            <button 
-            :style="{disabled: (creds.apiUrl.length && creds.login.length && creds.password.length)}"
-             @click="loginAndSend()">Send</button>       
+            <button @click="loginAndSend()">Загрузить таблицу</button>
         </div>
     </div>
 </div>
