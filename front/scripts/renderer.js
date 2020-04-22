@@ -73,7 +73,7 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                 table.exporting = true
             },
             creds: {
-                apiUrl: 'http://localhost:3000/api',
+                apiUrl: 'http://kinoigra.net.ua/api',
                 gameId: '',
                 login:'',
                 password: ''
