@@ -117,6 +117,7 @@ const {getFromFile, getFromWeb, saveToFile, sort} = require('./scripts/utils');
                         },
                         body: JSON.stringify({table: teams}),
                     });
+                    table.cancelExport();
                 } else if (!res.ok) {
                     alert(data.message)
                 }
